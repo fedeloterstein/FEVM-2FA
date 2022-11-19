@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/NoticeBoard.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity 0.8.17;\n\ncontract NoticeBoard {\n  \n  string notice;\n  mapping(string => address) noticeBy;\n\n  function setNotice(string memory _notice) public {\n    notice = _notice;\n    noticeBy[_notice] = msg.sender;\n  }\n\n  function getNotice() public view returns (string memory) {\n    return notice;\n  }\n\n  function getUserByNotice(string memory _notice) public view returns (address) {\n    return noticeBy[_notice];\n  }\n  \n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
