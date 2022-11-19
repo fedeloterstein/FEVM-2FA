@@ -39,7 +39,7 @@ module.exports = async ({ deployments }) => {
   console.log("Wallet Ethereum Address:", deployer.address);
   console.log("Wallet f4Address: ", f4Address)
 
-  await deploy("NoticeBoard", {
+  await deploy("TwoFactor", {
     from: deployer.address,
     args: [],
     // since it's difficult to estimate the gas before f4 address is launched, it's safer to manually set
@@ -52,4 +52,4 @@ module.exports = async ({ deployments }) => {
     log: true,
   });
 };
-module.exports.tags = ["NoticeBoard"];
+module.exports.tags = ["TwoFactor"];

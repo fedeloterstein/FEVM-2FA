@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.17;
 
-contract NoticeBoard {
+contract TwoFactor {
   
 address public owner1;
     address public owner2;
