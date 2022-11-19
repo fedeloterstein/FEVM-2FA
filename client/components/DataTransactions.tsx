@@ -13,30 +13,43 @@ import {
   Badge,
   Tfoot,
 } from '@chakra-ui/react'
-import { useTransactions } from '../hooks'
+import { useOwner, useTransactions } from '../hooks'
 import { utils } from 'ethers'
 import React from 'react'
 import { TransactionForm } from './'
-import { useContractWrite, usePrepareContractWrite } from 'wagmi'
+import { useContractWrite, usePrepareContractWrite, useAccount } from 'wagmi'
 import abi from '../contract/abi.json'
+import { useState } from 'react';
 
 export const DataTransactions = () => {
   const transactions = useTransactions()
+  const { address } = useAccount()
+  const ownerOne = useOwner(1)
+  const ownerTwo = useOwner(2)
+  const isOwnerOne = address === ownerOne?.address
+  const isOwnerTwo = address === ownerTwo?.address
 
+  const [indextx, setindextx] = useState<number>()
+
+  console.log(transactions.transactions);
+  
   const { config } = usePrepareContractWrite({
-    address: '0xdd22d3b824B19c2802911D96D755092D3Da5f9cb',
+    address: '0x45ccC035B8bEf1896104C19105c1203dB7e001Ed',
     abi: abi.abi,
     functionName: 'approveTransaction',
-    args: [1],
+    args: [indextx],
   })
   const { write } = useContractWrite(config)
-  
+
+  const Send = (index: number) => {
+    setindextx(index)
+    write?.()
+  }
 
   return (
     <>
       <Center p={5}>
         <Heading>Transactions 💸</Heading>
-        <Button onClick={() => write?.()}>Test</Button>
       </Center>
       <TransactionForm />
       <TableContainer>
@@ -48,6 +61,7 @@ export const DataTransactions = () => {
               <Th>Amount</Th>
               <Th>Signer Owner One</Th>
               <Th>Signer Owner Two</Th>
+              <Th>Status</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -59,9 +73,10 @@ export const DataTransactions = () => {
                   <Td>
                     {tx.signedByOwnerOne === false ? (
                       <Button
-                        onClick={() => write?.()}
-                        variant={'outline'}
+                        onClick={() => Send(index)}
+                        variant={'ghost'}
                         colorScheme={'red'}
+                        disabled={!isOwnerOne}
                       >
                         Pending
                       </Button>
@@ -72,9 +87,10 @@ export const DataTransactions = () => {
                   <Td>
                     {tx.signedByOwnerTwo === false ? (
                       <Button
-                        onClick={() => write?.()}
-                        variant={'outline'}
+                        onClick={() => Send(index)}
+                        variant={'ghost'}
                         colorScheme={'red'}
+                        disabled={!isOwnerTwo}
                       >
                         Pending
                       </Button>
@@ -82,6 +98,7 @@ export const DataTransactions = () => {
                       <Badge colorScheme={'green'}>Approve</Badge>
                     )}
                   </Td>
+                  <Td>{tx.success ? ( <Badge colorScheme={'green'}>Success</Badge>) : ( <Badge colorScheme={'yellow'}>Programmed</Badge>)}</Td>
                 </Tr>
               ))}
           </Tbody>
@@ -91,6 +108,7 @@ export const DataTransactions = () => {
               <Th>Amount</Th>
               <Th>Signer Owner One</Th>
               <Th>Signer Owner Two</Th>
+              <Th>Status</Th>
             </Tr>
           </Tfoot>
         </Table>
