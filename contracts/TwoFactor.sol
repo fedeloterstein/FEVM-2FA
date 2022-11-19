@@ -2,8 +2,7 @@
 pragma solidity 0.8.17;
 
 contract TwoFactor {
-  
-address public owner1;
+    address public owner1;
     address public owner2;
     uint256 public id;
 
@@ -14,6 +13,7 @@ address public owner1;
         uint256 amount;
         bool signedByOwnerOne;
         bool signedByOwnerTwo;
+        bool success;
     }
     Transaction[] public transactions;
 
@@ -35,6 +35,7 @@ address public owner1;
         Transaction memory transaction;
         transaction.to = _to;
         transaction.amount = _amount;
+        transaction.success = false;
         if (msg.sender == owner1) {
             transaction.signedByOwnerOne = true;
         } else {
@@ -61,9 +62,9 @@ address public owner1;
             transactions[_id].signedByOwnerOne &&
                 transactions[_id].signedByOwnerTwo
         );
-        require(transactions[_id].amount != 0);
+        require(transactions[_id].success != true);
         transactions[_id].to.transfer(transactions[_id].amount);
-        transactions[_id].amount = 0;
+        transactions[_id].success = true;
         emit NewWithdraw(transactions[_id].to, transactions[_id].amount);
     }
 
@@ -76,5 +77,4 @@ address public owner1;
     function getTransactions() public view returns (Transaction[] memory) {
         return transactions;
     }
-  
 }

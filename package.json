@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@glif/filecoin-address": "^2.0.13",
+    "@openzeppelin/contracts": "^4.8.0",
     "dotenv": "^16.0.3",
     "hardhat-deploy": "^0.11.18",
     "hardhat-deploy-ethers": "^0.3.0-beta.13"

@@ -8,12 +8,17 @@ export const TransactionForm = () => {
     const [amount, setamount] = useState<string>('')
     const { write } = useInitiateTransaction({address, amount})
     
+    const Send = () => {
+      write?.()
+      setaddress('')
+      setamount('')
+    }
    
   return (
     <HStack p={5}>
     <Input placeholder="Address To" w={'70%'} onChange={(e) => setaddress(e.target.value)}/>
     <Input placeholder="Amount" w={'20%'} onChange={(e) => setamount(e.target.value)} />
-    <Button w={'10%'}  onClick={() => write?.()}>
+    <Button w={'10%'}  onClick={() => Send()}>
       Add 💰
     </Button>
   </HStack>
