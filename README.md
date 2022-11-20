@@ -6,8 +6,9 @@ Project built in the ETHGlobal FEVM Hackathon
 
 ## 🌈 About
 
+We are the #1 wallet in FEVM that allows you to configure 2FA with 2 different wallets, increasing the security of your transactions and protecting your assets from possible attacks.
 
-TODO...
+We created a multisig Wallet that increases the security of our assets. This connects with two different wallets, for example one on the cell phone and one on the computer, working as a double authentication factor (2FA) since for any transaction I will need the approval of both devices. In other words, in the event that our cell phone is stolen and they want to access our wallet, they will not be able to steal the funds. Another ideal use case is, for example, in a Hackthon where an award is received, each member registers their Wallet, and when withdrawing the funds, they will need the approval of the team to carry out the transaction.
 
 ## 🏗 Get Started
 ### Clone the project
