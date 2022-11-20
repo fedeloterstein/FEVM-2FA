@@ -49,7 +49,7 @@ export const DataTransactions = () => {
   return (
     <>
       <Center p={5}>
-        <Heading>Transactions 💸</Heading>
+        <Heading as="h2" size={'lg'}>Transactions 💸</Heading>
       </Center>
       <TransactionForm />
       <TableContainer>

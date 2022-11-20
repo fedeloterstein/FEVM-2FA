@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>FEVM-2FA Wallet 🔐</title>
+        <title>SolShare Wallet 🔐</title>
         <meta
           name="description"
           content="Project built in the ETHGlobal FEVM Hackathon"

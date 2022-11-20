@@ -12,11 +12,15 @@ export const DataDisplay = () => {
   return (
     <>
       <Center>
-        <Heading>FEVM-2FA Wallet 🔐</Heading>
+        <Heading as={'h1'} size="xl">
+          SolShare Wallet 🔐
+        </Heading>
       </Center>
       <SimpleGrid columns={2} spacing={10} p="5">
         <Stack>
-          <Heading>Owners 👻</Heading>
+          <Heading as="h2" size={'lg'}>
+            Owners 👻
+          </Heading>
           {!ownerOne.isError && !ownerOne.isLoading && (
             <>
               <Text fontWeight={600}>Owner One:</Text>
@@ -31,7 +35,9 @@ export const DataDisplay = () => {
           )}
         </Stack>
         <Stack>
-          <Heading>Account 🤑</Heading>
+          <Heading as="h2" size={'lg'}>
+            Account 🤑
+          </Heading>
           {!balance.isError && !balance.isLoading && (
             <Text>
               Total Balance {utils.formatEther(balance.balance as any)} tFIL
