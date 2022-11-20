@@ -1,7 +1,7 @@
 #   SolShare Wallet 🔐
 Project built in the ETHGlobal FEVM Hackathon
 
-## 👤 Authors 
+## 👤 Author
 - Federico Loterstein ([@fedeloters](https://twitter.com/fedeloters))
 
 ## 🌈 About
@@ -19,6 +19,7 @@ TODO...
   cd FEVM-2FA
   yarn install
 ```
+
 ### Update the private key
 Add your deployment account private key in hardhat config file.
 
